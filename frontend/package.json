@@ -1,0 +1,23 @@
+{
+  "name": "esp32s3-magicband",
+  "version": "1.0.0",
+  "description": "MagicBand+ Control Panel",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "html-minimizer-webpack-plugin": "^4.4.0",
+    "html-webpack-plugin": "^5.5.4",
+    "mini-css-extract-plugin": "^2.7.6",
+    "rimraf": "^5.0.5",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.2"
+  }
+}

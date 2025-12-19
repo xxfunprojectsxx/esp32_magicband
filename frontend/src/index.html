@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MagicBand+ — Tech Control Panel</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+<body>
+    <div class="container" role="application" aria-label="MagicBand plus control panel">
+    <main class="main" role="main">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 3c2.2 0 4 1.8 4 4v10c0 2.2-1.8 4-4 4s-4-1.8-4-4V7c0-2.2 1.8-4 4-4z" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <h1>MagicBand+ Control</h1>
+        </div>
+      </div>
+
+     
+   
+    
+    
+</main>
+
+<aside class="panel" aria-hidden="false">
+    <div>
+        <div class="section-title">Vibration</div>    
+        <div style="display:flex;gap:8px;align-items:center">
+          <label style="display:flex;gap:8px;align-items:center;font-weight:700">
+            <input id="vibToggle" type="checkbox" checked aria-label="Vibration enabled">
+            <span class="tiny" style="color:var(--muted)">On</span>
+          </label>
+          <select id="vibPattern" class="small-select" aria-label="Vibration pattern">
+            <option value="1">Short</option>
+            <option value="2">Double</option>
+            <option value="3" selected>Triple</option>
+            <option value="7">Burst</option>
+            <option value="11">Long</option>
+          </select>
+          <button class="btn preset-blue" onclick="sendPing()" type="button" >Wake</button>
+        </div>
+        </div>
+      <div>
+        
+        <div class="section-title">Presets</div>
+        <div class="presets" role="group" aria-label="Presets">
+          <button class="btn preset-red" onclick="sendPreset('red')" title="Red" type="button">Red</button>
+          <button class="btn preset-blue" onclick="sendPreset('blue')" title="Blue" type="button">Blue</button>
+          <button class="btn preset-cyan" onclick="sendPreset('cyan')" title="Cyan" type="button">Cyan</button>
+          <button class="btn preset-green" onclick="sendPreset('green')" title="Green" type="button">Green</button>
+          <button class="btn preset-purple" onclick="sendPreset('purple')" title="Purple" type="button">Purple</button>
+          <button class="btn preset-pink" onclick="sendPreset('pink')" title="Pink" type="button">Pink</button>
+          <button class="btn preset-white" onclick="sendPreset('white')" title="White" type="button">White</button>
+          <button class="btn preset-orange" onclick="sendPreset('orange')" title="Orange" type="button">Orange</button>
+        </div>
+      </div>
+
+      <div class="section-title">Effects</div>
+
+      <div class="multi-grid">
+        <div class="card" aria-label="Dual Color">
+          <h3>Dual Color</h3>
+          <p class="tiny">Inner and outer zones — sends palette indices.</p>
+          <div class="color-row">
+            <input id="dualInner" class="color-input" type="color" value="#ffa500" aria-label="Dual inner color">
+            <input id="dualOuter" class="color-input" type="color" value="#0057ff" aria-label="Dual outer color">            
+          </div>
+          <div class="send-row">
+            <button class="btn preset-cyan" onclick="sendDual()" title="Send dual color" type="button">Send Dual</button>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Cross Fade">
+          <h3>Cross Fade</h3>
+          <p class="tiny">Fade between two palette colors.</p>
+          <div class="color-row">
+            <input id="crossA" class="color-input" type="color" value="#ff0000" aria-label="Cross color A">
+            <input id="crossB" class="color-input" type="color" value="#0000ff" aria-label="Cross color B">            
+          </div>
+          <div class="send-row">
+            <button class="btn preset-blue" onclick="sendCross()" title="Send cross fade" type="button">Send Crossfade</button>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Rainbow">
+          <h3>Rainbow (5 LEDs)</h3>
+          <p class="tiny">Pick 5 palette colors for the 5 LEDs.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <input id="r1" class="color-input" type="color" value="#ff9a00" aria-label="rainbow 1">
+            <input id="r2" class="color-input" type="color" value="#ff004d" aria-label="rainbow 2">
+            <input id="r3" class="color-input" type="color" value="#00ff3c" aria-label="rainbow 3">
+            <input id="r4" class="color-input" type="color" value="#0066ff" aria-label="rainbow 4">
+            <input id="r5" class="color-input" type="color" value="#9a00ff" aria-label="rainbow 5">            
+          </div>
+          <div class="send-row">
+            <button class="btn preset-purple" onclick="sendRainbow()" type="button">Send Rainbow</button>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Circle Animation">
+          <h3>Circle</h3>
+          <p class="tiny">Rotating ring animation.</p>
+          <div class="send-row" style="margin-top:12px">
+            <button class="btn preset-green" onclick="sendCircle()" type="button">Start Circle</button>            
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="min-width:320px; flex:1 1 60%">
+            <div class="tiny">Manual command (raw body)</div>
+            <div style="display:flex; gap:8px; margin-top:8px">
+              <input id="manual" type="text" placeholder="action=preset&color=red" aria-label="manual command" style="flex:1">
+              <button class="btn preset-cyan" onclick="sendManual()" type="button">Send</button>
+            </div>
+          </div>          
+        </div>
+      </div>
+   
+    </aside>
+  </div>
+  <!-- keep this at the end -->
+  <script src="/index.js"></script>
+</body>
+</html>
